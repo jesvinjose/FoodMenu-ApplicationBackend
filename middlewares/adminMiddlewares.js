@@ -15,9 +15,9 @@ export const adminAuth = async(req, res, next) => {
     const [name, value] = cookie.trim().split("=");
     cookies[name] = value;
   });
-  // console.log(cookies);
+
   const isUser=jwt.verify(cookies.adminAccessToken,process.env.usertoken_secretKey)
-  // console.log(isUser);
+
   const userExists=await User.findOne({email:isUser.email})
   if(!userExists) {
     return res.status(401).json({message:"User Not existing"})
