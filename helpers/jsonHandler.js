@@ -29,6 +29,9 @@ export const jsonErrorHandler={
     },
     "error8":{
         message:"Choose category from Indian, Chineese, Thai, Arabian or Shakes & IceCreams"
+    },
+    "error9":{
+        message:"Menu id not entered"
     }
 } 
 
