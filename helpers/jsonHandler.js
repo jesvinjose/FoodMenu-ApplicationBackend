@@ -32,7 +32,16 @@ export const jsonErrorHandler={
     },
     "error9":{
         message:"Menu id not entered"
-    }
+    },
+    "error10":{
+        message:"Input price"
+    },
+    "error11":{
+        message:"Input item"
+    },
+    "error12":{
+        message:"Input either item or category or both for updation"
+    },
 } 
 
 export const jsonSuccessHandler={

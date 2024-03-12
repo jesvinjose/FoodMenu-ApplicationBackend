@@ -9,6 +9,9 @@ import { Menu } from "../models/menuSchema.js";
 export const createMenu = async (req, res) => {
   try {
     const { category, price, item } = req.body;
+    if (Object.keys(req.body).length === 0) {
+      return res.status(404).json(jsonErrorHandler["error6"]);
+    }
     if (
       category !== "Indian" &&
       category !== "Chinese" &&
@@ -17,6 +20,12 @@ export const createMenu = async (req, res) => {
       category !== "Shakes & IceCreams"
     ) {
       return res.status(422).json(jsonErrorHandler["error8"]);
+    }
+    if(!price){
+      return res.status(404).json(jsonErrorHandler["error10"]);
+    }
+    if(!item){
+      return res.status(404).json(jsonErrorHandler["error11"]);
     }
     const data = { category, price, item };
     const result = new Menu(data);
@@ -45,9 +54,11 @@ export const updateMenu = async (req, res) => {
     if (Object.keys(req.body).length === 0) {
       return res.status(404).json(jsonErrorHandler["error6"]);
     }
-
     if (!menuId) {
       return res.status(400).json(jsonErrorHandler["error9"]); 
+    }
+    if (!category && !price) {
+      return res.status(400).json(jsonErrorHandler["error12"]);
     }
     const menuExists = await Menu.findById({ _id: menuId });
     if (!menuExists) {

@@ -11,6 +11,9 @@ import { User } from "../models/userSchema.js";
 export const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    if (Object.keys(req.body).length === 0) {
+      return res.status(404).json(jsonErrorHandler["error6"]);
+    }
     const isEmailValid = isValidEmail(email);
     if (!isEmailValid) {
       return res.status(422).json(jsonErrorHandler["error1"]);
@@ -46,6 +49,9 @@ export const userLogin = async (req, res) => {
 export const userRegister = async (req, res) => {
   try {
     const { fullName, email, password, confirmPassword } = req.body;
+    if (Object.keys(req.body).length === 0) {
+      return res.status(404).json(jsonErrorHandler["error6"]);
+    }
     const isEmailValid = isValidEmail(email);
     const isPasswordValid = isValidPassword(password);
     if (!isEmailValid) {
