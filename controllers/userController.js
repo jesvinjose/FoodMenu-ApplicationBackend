@@ -15,13 +15,13 @@ export const userLogin = async (req, res) => {
     if (!isEmailValid) {
       return res.status(422).json(jsonErrorHandler["error1"]);
     }
-    const user = await User.findOne({ email: email, role: "user" });
+    const user = await User.findOne({ email: email, adminRole: false});
     if (!user) {
       return res.status(404).json(jsonErrorHandler["error4"]);
     }
     const passwordChecking = await bcrypt.compare(password, user.password);
     if (!passwordChecking) {
-      return res.json(jsonErrorHandler["error2"]);
+      return res.status(422).json(jsonErrorHandler["error2"]);
     }
     const token = jwt.sign(
       {
@@ -55,7 +55,7 @@ export const userRegister = async (req, res) => {
         return res.status(422).json(jsonErrorHandler["error2"]);
     }
     if (password !== confirmPassword) {
-        return res.json(jsonErrorHandler["error3"]);
+        return res.status(422).json(jsonErrorHandler["error3"]);
     }
     const userExists = await User.findOne({ email: email });
     if (userExists) {

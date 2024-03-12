@@ -12,11 +12,7 @@ const menuSchema=mongoose.Schema({
     price:{
         type: Number,
         required: true
-    },
-    image:{
-        type:String,
-    }
-    
+    },   
 },{timeStamp:true})
 
 export const Menu = mongoose.model('Menu', menuSchema);

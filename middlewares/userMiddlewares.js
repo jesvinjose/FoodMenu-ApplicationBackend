@@ -17,7 +17,7 @@ export const userAuth = async(req, res, next) => {
   });
   // console.log(cookies);
   const isUser=jwt.verify(cookies.userAccessToken,process.env.usertoken_secretKey)
-  console.log(isUser);
+  // console.log(isUser);
   const userExists=await User.findOne({email:isUser.email})
   if(!userExists) {
     return res.status(401).json({message:"User Not existing"})

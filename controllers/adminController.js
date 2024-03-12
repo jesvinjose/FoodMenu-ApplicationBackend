@@ -20,7 +20,7 @@ export const adminRegister = async (req, res) => {
         return res.status(422).json(jsonErrorHandler["error2"]);
     }
     if (password !== confirmPassword) {
-        return res.json(jsonErrorHandler["error3"]);
+        return res.status(422).json(jsonErrorHandler["error3"]);
     }
     const adminExists=await User.findOne({email:email})
     if(adminExists){
@@ -49,7 +49,7 @@ export const adminLogin = async (req, res) => {
       }
       const passwordChecking = await bcrypt.compare(password, user.password);
       if(!passwordChecking){
-        return res.json(jsonErrorHandler["error2"]);
+        return res.status(422).json(jsonErrorHandler["error2"]);
       }
       const token = jwt.sign(
         {
@@ -89,10 +89,8 @@ export const changeRole=async(req,res)=>{
 
 export const listUsers=async(req,res)=>{
     try {
-
         const userList=await User.aggregate([{$match:{adminRole:false}},{$project:{password:0}}]);
         return res.status(200).json({userList,status:"success"})  
-
     } catch (error) {
         res.status(500).json(jsonErrorHandler['error0'])
     }

@@ -3,6 +3,7 @@ import { adminLogin, adminLogout, adminRegister, changeRole, listUsers } from '.
 import { adminAuth } from '../middlewares/adminMiddlewares.js';
 import { createMenu, updateMenu } from '../controllers/menuController.js';
 
+
 const adminRoute=express.Router();
 
 adminRoute.post('/register',adminRegister)

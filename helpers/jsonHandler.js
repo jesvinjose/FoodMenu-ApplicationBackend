@@ -26,8 +26,10 @@ export const jsonErrorHandler={
     },
     "error7":{
         message:"Menu Not existing"
+    },
+    "error8":{
+        message:"Choose category from Indian, Chineese, Thai, Arabian or Shakes & IceCreams"
     }
-    
 } 
 
 export const jsonSuccessHandler={
@@ -48,7 +50,11 @@ export const jsonSuccessHandler={
     },
     success6:{
         message:"Menu Updated Successfully"
+    },
+    success7:{
+        message:"Menu Created Successfully"
+    },
+    success8:{
+        message:"Menu Listed Successfully"
     }
-
-
 }
